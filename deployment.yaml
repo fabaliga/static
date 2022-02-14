@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bigpi-website
+spec:
+  selector:
+    matchLabels:
+      app: bigpi-website
+  template:
+    metadata:
+      labels:
+        app: bigpi-website
+    spec:
+      containers:
+        - name: bigpi-website
+          image: nginx:alpine
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /usr/share/nginx/html
+              subPath: static/www
+              name: bigpi-volume
+      volumes:
+        - name: bigpi-volume
+          gitRepo:
+            repository: https://github.com/fabaliga/static.git

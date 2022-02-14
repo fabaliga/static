@@ -1,0 +1,9 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: bigpi-service
+spec:
+  selector:
+    app: bigpi-website
+  ports:
+    - port: 80
